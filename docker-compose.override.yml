@@ -1,0 +1,10 @@
+version: '1.0'
+
+services:
+  persondb:
+    container_name: persondb
+    restart: always
+    ports:
+        - "27017:27017"
+    volumes:
+        - mongo_data:/data/db
