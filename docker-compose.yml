@@ -1,0 +1,11 @@
+version: '1.0'
+
+services:
+  persondb:
+    image: mongo
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+volumes:
+  mongo_data:

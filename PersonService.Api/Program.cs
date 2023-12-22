@@ -1,11 +1,17 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+using PersonService.Api.Configurations.Abstraction;
+using PersonService.Api.Configurations;
+using PersonService.Api.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services
+    .InstallServices(
+    builder.Configuration, typeof(IServiceInstaller).Assembly);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 var app = builder.Build();
 
@@ -16,9 +22,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionMiddleware();
+
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors();
 
 app.MapControllers();
 
