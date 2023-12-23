@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using PersonService.Application.Services;
 using PersonService.Domain.Entities;
 using PersonService.Persistance.Context.Abstraction;

@@ -3,6 +3,9 @@ version: '1.0'
 services:
   persondb:
     image: mongo
+  
+  reportdb:
+    image: postgres
 
   rabbitmq:
     image: rabbitmq:3-management-alpine

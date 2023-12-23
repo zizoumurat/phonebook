@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using PersonService.Application.Services;
+using PersonService.Domain.Dtos;
 using PersonService.Domain.Entities;
 using PersonService.Persistance.Context.Abstraction;
 
@@ -30,6 +31,33 @@ namespace PersonService.Persistance.Services.Mongo
             var update = Builders<Person>.Update.PullFilter(p => p.ContactInformation, ci => ci.Id == id);
 
             var result = await _personDbContext.Persons.UpdateOneAsync(filter, update);
+        }
+
+        public async Task<IList<LocationReportDto>> GetReportList()
+        {
+            var pipeline = new BsonDocument[]
+            {
+                new BsonDocument("$unwind", "$ContactInformation"),
+                    new BsonDocument("$group",
+                        new BsonDocument
+                        {
+                            { "_id", "$ContactInformation.Location" },
+                            { "PhoneNumberCount", new BsonDocument("$sum", 1) },
+                            { "PersonCount", new BsonDocument("$sum", 1) }
+                        }
+                    ),
+                    new BsonDocument("$project",
+                        new BsonDocument
+                        {
+                            { "_id", 0 },
+                            { "Location", "$_id" },
+                            { "PhoneNumberCount", "$PhoneNumberCount" },
+                            { "PersonCount", "$PersonCount" }
+                        }
+                    )
+            };
+
+            return await _personDbContext.Persons.Aggregate<LocationReportDto>(pipeline).ToListAsync();
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using PersonService.Api.Configurations.Abstraction;
+﻿using ReportsService.Api.Configurations.Abstraction;
 using System.Reflection;
 
-namespace PersonService.Api.Configurations;
+namespace ReportsService.Api.Configurations;
 
 public static class DependencyInjection
 {

@@ -16,8 +16,4 @@
 		<ProjectReference Include="..\PersonService.Domain\PersonService.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Features\ContactInformationFeatures\Queries\" />
-	</ItemGroup>
-
 </Project>
