@@ -2,6 +2,7 @@
 using ReportsService.Domain.Entities;
 using ReportsService.Domain.Repositories;
 using ReportsService.Persistance.Context;
+using System;
 
 namespace ReportsService.Persistance.Repositories
 {
@@ -14,11 +15,13 @@ namespace ReportsService.Persistance.Repositories
             _context = context;
         }
 
-        public async Task Create(Report report)
+        public async Task<Report> Create(Report report)
         {
             await _context.Reports.AddAsync(report);
 
             _context.SaveChanges();
+
+            return report;
         }
 
         public async Task<IList<Report>> GetAll()
@@ -26,15 +29,34 @@ namespace ReportsService.Persistance.Repositories
             return await _context.Reports.ToListAsync();
         }
 
-        public async Task<Report?> GetById(int Id)
+        public async Task<Report?> GetById(int id)
         {
-            return await _context.Reports.Include(x => x.Details).FirstOrDefaultAsync(x => x.Id == Id);
+            return await _context.Reports.Include(x => x.Details).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task Update(Report report)
         {
             _context.Entry(report).State = EntityState.Modified;
 
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddDetailList(int reportId, IList<ReportDetail> detailList)
+        {
+            var report = await GetById(reportId);
+
+            report.Details.AddRange(detailList);
+
+            report.IsComplated = true;
+            report.CreatedDate = DateTime.Now;
+
+            await Update(report);
+        }
+
+        public async Task Delete(int id)
+        {
+            var report = new Report { Id = id };
+            _context.Entry(report).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
     }

@@ -1,0 +1,47 @@
+<div>
+    <div class="add-title">
+      <h2 class="primary">Kişi Ekle</h2>
+    </div>
+    <div>
+      <form [formGroup]="addCusForm" (change)="formChanged()" *ngIf="addCusForm">
+        <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Adı" formControlName="firstName" required>
+                <mat-error *ngIf="addCusForm.controls.firstName.hasError('required')">
+                    Bu Alan Zorunludur
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Soyadı" formControlName="lastName" required>
+                <mat-error *ngIf="addCusForm.controls.lastName.hasError('required')">
+                    Bu Alan Zorunludur
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Şirket" formControlName="company" required>
+                <mat-error *ngIf="addCusForm.controls.company.hasError('required')">
+                    Bu Alan Zorunludur
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+        <div class="btn-sec">
+          <button mat-raised-button type="button" color="warn" class="margin-1"  [mat-dialog-close]="true">İptal</button>
+          <button mat-raised-button type="submit" color="primary"  (click)="save()">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

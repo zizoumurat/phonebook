@@ -3,8 +3,5 @@ using PersonService.Domain.Dtos;
 
 namespace PersonService.Application.Features.PersonFeatures.Commands.CreatePerson
 {
-    public class CreatePersonCommand : ICommand<CreatePersonCommandResponse>
-    {
-        public PersonDto Person { get; set; }
-    }
+    public sealed record CreatePersonCommand(string firstName, string lastName, string company) : ICommand<CreatePersonCommandResponse>;
 }

@@ -1,14 +1,19 @@
 using Autofac.Extensions.DependencyInjection;
-using Autofac;
 using PersonService.Api.Configurations.Abstraction;
 using PersonService.Api.Configurations;
 using PersonService.Api.Middleware;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .InstallServices(
     builder.Configuration, typeof(IServiceInstaller).Assembly);
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Person API", Version = "v1" });
+});
 
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -19,7 +24,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Person API V1");
+    });
 }
 
 app.UseExceptionMiddleware();

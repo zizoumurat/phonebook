@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PersonService.Application.Features.ContactInformationFeatures.Commands.CreateContactInformation;
+using PersonService.Application.Features.ContactInformationFeatures.Commands.DeleteContactInformation;
 using PersonService.Application.Features.ContactInformationFeatures.Queries.Report;
-using PersonService.Application.Features.PersonFeatures.Commands.DeletePerson;
 using PersonService.Presentation.Abstraction;
 
 namespace PersonService.Presentation.Controller;
@@ -28,13 +28,13 @@ public class ContactInformationController : ApiController
         ReportQuery request = new();
         var response = await _mediator.Send(request);
 
-        return Ok(response);
+        return Ok(response.reportList);
     }
 
-    [HttpDelete]
-    public async Task<IActionResult> Delete(string Id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(DeleteCICommand request)
     {
-        var response = await _mediator.Send(new DeletePersonCommand(Id));
+        var response = await _mediator.Send(request);
 
         return Ok(response);
     }

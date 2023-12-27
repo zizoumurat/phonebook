@@ -17,20 +17,18 @@ namespace ReportsService.Persistance.Services
             _mapper = mapper;
         }
 
-        public async Task AddDetailList(ReportDto report, IList<ReportDetailDto> detailList)
+        public async Task AddDetailList(int reportId, IList<ReportDetailDto> detailList)
         {
-            var entity = _mapper.Map<Report>(report);
-
-            entity.Details.AddRange(_mapper.Map<List<ReportDetail>>(detailList));
-
-            await _reportRepository.Update(entity);
+            await _reportRepository.AddDetailList(reportId,_mapper.Map<List<ReportDetail>>(detailList));
         }
 
-        public async Task Create(ReportDto report)
+        public async Task<ReportDto> Create(ReportDto report)
         {
             var entity = _mapper.Map<Report>(report);
 
-            await _reportRepository.Create(entity);
+           var addedReport =  await _reportRepository.Create(entity);
+
+            return _mapper.Map<ReportDto>(addedReport);
         }
 
         public async Task<IList<ReportDto>> GetAll()
@@ -40,11 +38,11 @@ namespace ReportsService.Persistance.Services
             return _mapper.Map<List<ReportDto>>(list);
         }
 
-        public async Task<ReportDto?> GetById(int id)
+        public async Task<ReportWithDetailDto?> GetById(int id)
         {
             var report = await _reportRepository.GetById(id);
 
-            return _mapper.Map<ReportDto>(report);
+            return _mapper.Map<ReportWithDetailDto>(report);
         }
 
         public async Task Update(ReportDto report)
@@ -52,6 +50,11 @@ namespace ReportsService.Persistance.Services
             var entity = _mapper.Map<Report>(report);
 
             await _reportRepository.Create(entity);
+        }
+
+        public async Task Delete(int id)
+        {
+            await _reportRepository.Delete(id);
         }
     }
 }

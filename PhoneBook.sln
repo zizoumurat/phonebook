@@ -37,17 +37,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1FFA0D6F-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{9A3255E6-0B72-4448-B13C-90034F10F1EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsService.Domain", "ReportsService.Domain\ReportsService.Domain.csproj", "{343216C1-CF74-4E6E-9482-90E585AD9651}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportsService.Domain", "ReportsService.Domain\ReportsService.Domain.csproj", "{343216C1-CF74-4E6E-9482-90E585AD9651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsService.Application", "ReportsService.Application\ReportsService.Application.csproj", "{1DD72651-D6DC-4C14-88EF-32D4BC8A321C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportsService.Application", "ReportsService.Application\ReportsService.Application.csproj", "{1DD72651-D6DC-4C14-88EF-32D4BC8A321C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsService.Infrasturcture", "ReportsService.Infrasturcture\ReportsService.Infrasturcture.csproj", "{1B7E54E9-1A12-46EA-87C3-6E85271B07A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportsService.Infrasturcture", "ReportsService.Infrasturcture\ReportsService.Infrasturcture.csproj", "{1B7E54E9-1A12-46EA-87C3-6E85271B07A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsService.Persistance", "ReportsService.Persistance\ReportsService.Persistance.csproj", "{02355A43-19E1-4501-985F-EEB229505274}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportsService.Persistance", "ReportsService.Persistance\ReportsService.Persistance.csproj", "{02355A43-19E1-4501-985F-EEB229505274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsService.Presentation", "ReportsService.Presentation\ReportsService.Presentation.csproj", "{2A773122-EEFB-4053-A350-708D0C8EEA78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportsService.Presentation", "ReportsService.Presentation\ReportsService.Presentation.csproj", "{2A773122-EEFB-4053-A350-708D0C8EEA78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportsService.Api", "ReportsService.Api\ReportsService.Api.csproj", "{2075F05E-80BA-41F2-A9B7-65BF96512E3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportsService.Api", "ReportsService.Api\ReportsService.Api.csproj", "{2075F05E-80BA-41F2-A9B7-65BF96512E3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{ECE746D3-64A2-4BBD-B130-0B8DC97BAAD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotApi", "OcelotApi\OcelotApi.csproj", "{6C89490B-D496-41EE-9C62-87DB37B8A45E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +107,10 @@ Global
 		{2075F05E-80BA-41F2-A9B7-65BF96512E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2075F05E-80BA-41F2-A9B7-65BF96512E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2075F05E-80BA-41F2-A9B7-65BF96512E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C89490B-D496-41EE-9C62-87DB37B8A45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C89490B-D496-41EE-9C62-87DB37B8A45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C89490B-D496-41EE-9C62-87DB37B8A45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C89490B-D496-41EE-9C62-87DB37B8A45E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +138,7 @@ Global
 		{02355A43-19E1-4501-985F-EEB229505274} = {9A3255E6-0B72-4448-B13C-90034F10F1EF}
 		{2A773122-EEFB-4053-A350-708D0C8EEA78} = {9A3255E6-0B72-4448-B13C-90034F10F1EF}
 		{2075F05E-80BA-41F2-A9B7-65BF96512E3E} = {5A35AF0A-491B-4DC4-AAC4-CFB62DC550C3}
+		{6C89490B-D496-41EE-9C62-87DB37B8A45E} = {ECE746D3-64A2-4BBD-B130-0B8DC97BAAD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {941DB20C-D815-41A1-AB25-6393A2564AAB}

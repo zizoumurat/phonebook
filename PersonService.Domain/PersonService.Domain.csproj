@@ -6,11 +6,13 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="MongoDB.Driver" Version="2.23.1" />
-	</ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Enums\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <None Remove="Enums\**" />
+  </ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Enums\" />
+		<PackageReference Include="MongoDB.Driver" Version="2.23.1" />
 	</ItemGroup>
 </Project>

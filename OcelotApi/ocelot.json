@@ -1,0 +1,191 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/{anything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "person.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/person/sw/{anything}",
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "UpstreamScheme": "http",
+            "SwaggerKey": "person",
+            "AddHeadersToRequest": {
+                "ContentType": "application/json"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/api/ContactInformation",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "person.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/ContactInformation",
+            "UpstreamHttpMethod": [
+                "OPTIONS",
+                "GET",
+                "POST",
+                "DELETE"
+            ],
+            "AddHeadersToRequest": {
+                "ContentType": "application/json"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/api/ContactInformation/{anything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "person.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/ContactInformation/{anything}",
+            "UpstreamHttpMethod": [
+                "OPTIONS",
+                "GET",
+                "POST",
+                "DELETE"
+            ],
+            "AddHeadersToRequest": {
+                "ContentType": "application/json"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/api/person",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "person.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/person",
+            "UpstreamHttpMethod": [
+                "OPTIONS",
+                "GET",
+                "POST",
+                "DELETE"
+            ],
+            "AddHeadersToRequest": {
+                "ContentType": "application/json"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/api/person/{anything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "person.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/person/{anything}",
+            "UpstreamHttpMethod": [
+                "OPTIONS",
+                "GET",
+                "POST",
+                "DELETE"
+            ],
+            "AddHeadersToRequest": {
+                "ContentType": "application/json"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/{anything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "report.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/report/sw/{anything}",
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "UpstreamScheme": "http",
+            "SwaggerKey": "report.api"
+        },
+        {
+            "DownstreamPathTemplate": "/api/report",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "report.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/report",
+            "UpstreamHttpMethod": [
+                "OPTIONS",
+                "GET",
+                "POST",
+                "DELETE"
+            ],
+            "UpstreamScheme": "http",
+            "SwaggerKey": "report",
+            "AddHeadersToRequest": {
+                "ContentType": "application/json"
+            }
+        },
+        {
+            "DownstreamPathTemplate": "/api/report/{anything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "report.api",
+                    "Port": 80
+                }
+            ],
+            "UpstreamPathTemplate": "/api/report/{anything}",
+            "UpstreamHttpMethod": [
+                "OPTIONS",
+                "GET",
+                "POST",
+                "DELETE"
+            ],
+            "UpstreamScheme": "http",
+            "SwaggerKey": "report",
+            "AddHeadersToRequest": {
+                "ContentType": "application/json"
+            }
+        }
+    ],
+    
+    "GlobalConfiguration": {
+        "BaseUrl": "http://ocelot.api"
+    },
+    "SwaggerEndPoints": [
+        {
+            "Key": "person",
+            "TransformByOcelotConfig": false,
+            "Config": [
+                {
+                    "Name": "Person API",
+                    "Version": "v1",
+                    "Url": "http://ocelot.api/person/sw/swagger/v1/swagger.json"
+                }
+            ]
+        },
+        {
+            "Key": "report",
+            "TransformByOcelotConfig": false,
+            "Config": [
+                {
+                    "Name": "Report API",
+                    "Version": "v1",
+                    "Url": "http://ocelot.api/report/sw/swagger/v1/swagger.json"
+                }
+            ]
+        }
+    ]
+}

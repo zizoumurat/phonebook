@@ -18,7 +18,7 @@ namespace PersonService.Application.Features.PersonFeatures.Commands.CreatePerso
 
         public async Task<CreatePersonCommandResponse> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
         {
-            var person = _mapper.Map<Person>(request.Person);
+            var person = _mapper.Map<Person>(request);
             
             await _personService.CreatePerson(person);
 

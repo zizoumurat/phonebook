@@ -20,7 +20,7 @@ namespace PersonService.Presentation.Controller
             GetAllPersonQuery query = new();
             var response = await _mediator.Send(query);
 
-            return Ok(response);
+            return Ok(response.personList);
         }
 
         [HttpGet("{id}")]
@@ -29,7 +29,7 @@ namespace PersonService.Presentation.Controller
             GetPersonQuery query = new(id);
             var response = await _mediator.Send(query);
 
-            return Ok(response);
+            return Ok(response.person);
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace PersonService.Presentation.Controller
             return Ok(response);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePerson(string Id)
         {
             var response = await _mediator.Send(new DeletePersonCommand(Id));

@@ -1,0 +1,51 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+    <div fxFlex="95%">
+  
+      <mat-card>
+        <mat-card-content>
+          <div class="user-list-header">
+            <h2>Kişiler</h2>
+            <div>
+              <button mat-raised-button color="primary" (click)="openDialog()">Yeni Kişi Ekle</button>
+            </div>
+          </div>
+          
+          
+          <table mat-table [dataSource]="dataSource" matSort>
+  
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Adı </th>
+              <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Soyadı </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="company">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Firma </th>
+              <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row" class="dynamic-width-column text-right">
+                <button mat-raised-button color="accent" (click)="goToDetail(row.id)" class="mr-2">
+                  Detaylar
+                </button>
+                <button mat-raised-button color="warn" (click)="delete(row.id)">
+                  Sil
+                </button>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+        </mat-card-content>
+      </mat-card>
+  
+    </div>
+  </div>

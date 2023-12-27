@@ -7,9 +7,9 @@ namespace PersonService.Application.Features.PersonFeatures.Commands.CreatePerso
     {
         public CreatePersonCommandValidator()
         {
-            RuleFor(r => r.Person.FirstName).NotNull().WithMessage(ValidationMessages.FirstNameRequired);
-            RuleFor(r => r.Person.LastName).NotEmpty().WithMessage(ValidationMessages.LastNameRequired);
-            RuleFor(r => r.Person.Company).NotEmpty().WithMessage(ValidationMessages.CompanyNameRequired);
+            RuleFor(r => r.firstName).NotNull().WithMessage(ValidationMessages.FirstNameRequired);
+            RuleFor(r => r.lastName).NotEmpty().WithMessage(ValidationMessages.LastNameRequired);
+            RuleFor(r => r.company).NotEmpty().WithMessage(ValidationMessages.CompanyNameRequired);
         }
     }
 }

@@ -3,8 +3,4 @@ using PersonService.Domain.Dtos;
 
 namespace PersonService.Application.Features.ContactInformationFeatures.Commands.CreateContactInformation;
 
-public class CreateCICommand : ICommand<CreateCICommandResponse>
-{
-    public string PersonId { get; set; }
-    public ContactInformationDto ContactInformation { get; set; }
-}
+public sealed record CreateCICommand(string personId, string phoneNumber, string email, string location) : ICommand<CreateCICommandResponse>;

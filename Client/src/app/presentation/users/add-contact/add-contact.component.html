@@ -1,0 +1,50 @@
+<div>
+    <div class="add-title">
+      <h2 class="primary">İletişim Bilgisi Ekle</h2>
+    </div>
+    <div>
+      <form [formGroup]="addForm" (change)="formChanged()" *ngIf="addForm">
+        <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Telefon Numarası" formControlName="phoneNumber" required>
+                <mat-error *ngIf="addForm.controls.phoneNumber.hasError('required')">
+                    Bu Alan Zorunludur
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="E-mail" formControlName="email" required>
+                <mat-error *ngIf="addForm.controls.email.hasError('required')">
+                    Bu Alan Zorunludur
+                </mat-error>
+                <mat-error *ngIf="addForm.controls.email.hasError('email')">
+                  Geçersiz E-mail
+              </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Konum" formControlName="location" required>
+                <mat-error *ngIf="addForm.controls.location.hasError('required')">
+                    Bu Alan Zorunludur
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+        <div class="btn-sec">
+          <button mat-raised-button type="button" color="warn" class="margin-1"  [mat-dialog-close]="true">İptal</button>
+          <button mat-raised-button type="submit" color="primary"  (click)="save()">Kaydet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

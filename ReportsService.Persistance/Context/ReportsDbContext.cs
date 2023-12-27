@@ -7,6 +7,7 @@ namespace ReportsService.Persistance.Context
     {
         public ReportsDbContext(DbContextOptions<ReportsDbContext> options) : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         public DbSet<Report> Reports { get; set; }

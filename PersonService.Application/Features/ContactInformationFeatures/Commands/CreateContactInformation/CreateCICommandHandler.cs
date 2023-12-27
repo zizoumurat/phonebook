@@ -18,9 +18,9 @@ namespace PersonService.Application.Features.ContactInformationFeatures.Commands
 
         public async Task<CreateCICommandResponse> Handle(CreateCICommand request, CancellationToken cancellationToken)
         {
-            var contactInformation = _mapper.Map<ContactInformation>(request.ContactInformation);
+            var contactInformation = _mapper.Map<ContactInformation>(request);
 
-            await _contactInformationService.Create(request.PersonId, contactInformation);
+            await _contactInformationService.Create(request.personId, contactInformation);
 
             return new(contactInformation.Id.ToString());   
         }

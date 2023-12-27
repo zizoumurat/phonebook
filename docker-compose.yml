@@ -1,5 +1,4 @@
-version: '1.0'
-
+version: "3.8"
 services:
   persondb:
     image: mongo
@@ -10,5 +9,30 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
 
+  person.api:
+    image: personapi
+    build:
+      context: .
+      dockerfile: PersonService.Api/Dockerfile
+
+  report.api:
+    image: reportapi
+    build:
+      context: .
+      dockerfile: ReportsService.Api/Dockerfile
+
+  ocelot.api:
+    image: ocelotapi
+    build:
+      context: .
+      dockerfile: OcelotApi/Dockerfile  
+  
+  web.client:
+    image: web.client
+    build:
+      context: .
+      dockerfile: Client/Dockerfile
+
 volumes:
   mongo_data:
+  postgres_data:

@@ -1,22 +1,87 @@
-version: '1.0'
-
+version: "3.8"
 services:
   persondb:
     container_name: persondb
     restart: always
     ports:
-        - "27017:27017"
+      - "27017:27017"
     volumes:
-        - mongo_data:/data/db
-  
+      - mongo_data:/data/db
+
   reportdb:
     container_name: reportdb
+    restart: always
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin!5
       - POSTGRES_DB=reportdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d reportdb -h localhost -p 5432"]
+      interval: 35s
+      timeout: 35s
+      retries: 5
+
+  person.api:
+    container_name: person.api
+    ports:
+      - "4001:80"
+    environment:
+      - MongoDbSettings:ConnectionString=mongodb://persondb:27017
+      - MongoDbSettings:DatabaseName=PersonDb
+      - MongoDbSettings:CollectionName=Persons
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+    depends_on:
+      - persondb
+    
+  rabbitmq:
+    container_name: rabbitmq
     restart: always
     ports:
-        - "5432:5432"
-volumes:
-  postgres_data:
+      - "5672:5672"
+      - "15672:15672"
+
+  report.api:
+    container_name: report.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+      - ConnectionStrings:PostgreConnection=Server=reportdb;Port=5432;Database=reportdb;User Id=admin;Password=admin!5;
+      - RabbitMQ:Host=rabbitmq
+      - RabbitMQ:Port=5672
+      - RabbitMQ:UserName=guest
+      - RabbitMQ:Password=guest
+      - RabbitMQ:QueueName=reports_queue
+      - RabbitMQ:VirtualHost=/
+      - UserServiceBaseUrl=http://ocelot.api
+    ports:
+      - "4003:80"
+    depends_on:
+      reportdb:
+        condition: service_healthy
+
+  ocelot.api:
+    container_name: ocelot.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+    depends_on:
+      - person.api
+      - report.api
+    ports:
+      - "6001:80"
+  
+  web.client:
+    container_name: web.client
+    environment:
+      - production=false
+      - serverLogLevel=0
+      - apiUrl=http://ocelot.api
+      - hubUrl=http://report.api
+    depends_on:
+      - person.api
+      - report.api
+    ports:
+      - "6001:80"

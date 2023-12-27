@@ -1,0 +1,80 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+
+  <div *ngIf="person" fxFlex="95%">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
+
+      <div fxFlex="35%" fxFlex.sm="95%" fxFlex.xs="95%">
+        <mat-card>
+          <mat-card-content>
+            <h2>Kişi Bilgileri</h2>
+            <mat-list>
+              <mat-list-item>
+                <div class="list-item">
+                  <span>Adı</span>
+                  <b>{{person.firstName}}</b>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="list-item">
+                  <span>Soyadı</span>
+                  <b>{{person.lastName}}</b>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="list-item">
+                  <span>Şirket</span>
+                  <b>{{person.company}}</b>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div fxFlex></div>
+
+      <div fxFlex="60%" fxFlex.sm="95%" fxFlex.xs="950%">
+        <mat-card>
+          <mat-card-content>
+            <div class="user-list-header">
+              <h2>İletişim Bilgileri</h2>
+              <div>
+                <button mat-raised-button color="primary" (click)="openDialog()">Yeni Ekle</button>
+              </div>
+            </div>
+
+            <table mat-table [dataSource]="dataSource" matSort>
+
+              <ng-container matColumnDef="phoneNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefon </th>
+                <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Konum </th>
+                <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row" class="dynamic-width-column text-right">
+                  <button mat-raised-button color="warn" (click)="delete(row.id)">
+                    Sil
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

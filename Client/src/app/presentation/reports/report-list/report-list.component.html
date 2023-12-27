@@ -1,0 +1,51 @@
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+    <div fxFlex="95%">
+  
+      <mat-card>
+        <mat-card-content>
+          <div class="user-list-header">
+            <h2>Raporlar</h2>
+            <div>
+              <button mat-raised-button color="primary" (click)="createNewReport()">Yeni Rapor Talep Et</button>
+            </div>
+          </div>
+          
+          
+          <table mat-table [dataSource]="dataSource" matSort>
+  
+            <ng-container matColumnDef="requestDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Talep Tarihi </th>
+              <td mat-cell *matCellDef="let element"> {{element.requestDate | date: 'dd/MM/yyyy HH:mm'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="createdDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Oluşturma Tarihi </th>
+              <td mat-cell *matCellDef="let element">  {{element.createdDate | date: 'dd/MM/yyyy HH:mm'}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="isComplated">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Durumu </th>
+              <td mat-cell *matCellDef="let element"> {{element.isComplated ? 'Tamamlandı' : 'Hazırlanıyor'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row" class="dynamic-width-column text-right">
+                <button *ngIf="row.isComplated" mat-flat-button color="accent" class="mr-2" (click)="openDetail(row.id)">
+                  Detaylar
+                </button>
+                <button *ngIf="row.isComplated" mat-flat-button color="warn"  (click)="delete(row.id)">
+                  Sil
+                </button>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+        </mat-card-content>
+      </mat-card>
+  
+    </div>
+  </div>
