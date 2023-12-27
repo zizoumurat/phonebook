@@ -83,5 +83,6 @@ services:
     depends_on:
       - person.api
       - report.api
+      - ocelot.api
     ports:
-      - "6001:80"
+      - "4200:80"
