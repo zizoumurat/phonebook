@@ -29,8 +29,9 @@ services:
   
   web.client:
     image: web.client
-    context: ./Client
-    dockerfile: ./Dockerfile
+    build:
+      context: ./Client
+      dockerfile: ./Dockerfile
 
 volumes:
   mongo_data:
