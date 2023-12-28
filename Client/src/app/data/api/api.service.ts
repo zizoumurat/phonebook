@@ -40,7 +40,6 @@ export class ApiService {
   }
 
   delete<T>(url: string): Observable<T> {
-    console.log(url);
     return this.http.delete<T>(`${environment.apiUrl}${url}`, {
       headers: this.headers
     });

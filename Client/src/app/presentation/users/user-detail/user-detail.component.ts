@@ -70,8 +70,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   delete(id: string) {
-  
-    this.contactService.delete(id)
+    this.contactService.delete(this.personId, id)
       .pipe()
       .subscribe(x => {
         this.getPerson();

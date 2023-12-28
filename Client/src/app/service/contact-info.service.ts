@@ -14,7 +14,7 @@ export class ContactInformationService extends IContactInformationService {
     override create(data: ContactInformationModel): Observable<any> {
         return this.repo.create(data);
     }
-    override delete(id: string): Observable<any> {
-        return this.repo.delete(id);
+    override delete(personId: string, id: string): Observable<any> {
+        return this.repo.delete(personId, id);
     }
 }

@@ -18,7 +18,7 @@ export class ContactInformationRepository extends IContactInformationRepository 
         return this.api.post(endPoint, data);
     }
 
-    override delete(id: string): Observable<any> {
-        return this.api.delete(`${endPoint}/${id}`);
+    override delete(personId: string, id: string): Observable<any> {
+        return this.api.delete(`${endPoint}/${personId}/${id}`);
     }
 }

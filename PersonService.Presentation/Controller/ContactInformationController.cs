@@ -31,10 +31,10 @@ public class ContactInformationController : ApiController
         return Ok(response.reportList);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(DeleteCICommand request)
+    [HttpDelete("{personId}/{id}")]
+    public async Task<IActionResult> Delete(string 	string id)
     {
-        var response = await _mediator.Send(request);
+        var response = await _mediator.Send(new DeleteCICommand(personId, id));
 
         return Ok(response);
     }
