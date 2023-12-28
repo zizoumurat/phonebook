@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ReportsService.Application.Services;
 
-namespace ReportsService.Application.Services
+public interface IReportQueueService
 {
-    public interface IReportQueueService
-    {
-        Task SendCreateReportRequest();
-        Task SendProcessReportRequest(int id);
-    }
+    Task SendCreateReportRequest();
+    Task SendProcessReportRequest(int id);
 }

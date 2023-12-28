@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\ContactInformationFeatures\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PersonService.Application\PersonService.Application.csproj" />
     <ProjectReference Include="..\PersonService.Persistance\PersonService.Persistance.csproj" />
   </ItemGroup>

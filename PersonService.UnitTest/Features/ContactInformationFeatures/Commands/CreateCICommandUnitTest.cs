@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using FluentValidation.TestHelper;
 using Moq;
 using PersonService.Application.Features.ContactInformationFeatures.Commands.CreateContactInformation;
 using PersonService.Application.Services;
+using PersonService.Domain.Validation;
 using PersonService.Persistance.AutoMapper;
 using Shouldly;
 
@@ -29,6 +31,42 @@ public class CreateCICommandUnitTest
 
         response.ShouldNotBeNull();
         response.message.ShouldNotBeNullOrEmpty();
+    }
+
+    [Fact]
+    public async Task ShouldHaveErrorWhenEmailIsInvalid()
+    {
+        var validator = new CreateCICommandValidator();
+        var command = new CreateCICommand("", "09999999999", "invalidEmail", "Konya");
+
+        var result = validator.TestValidate(command);
+
+        result.ShouldHaveValidationErrorFor(r => r.email)
+            .WithErrorMessage(ValidationMessages.InvalidEmail);
+    }
+
+    [Fact]
+    public async Task ShouldHaveErrorWhenPhoneIsEmpty()
+    {
+        var validator = new CreateCICommandValidator();
+        var command = new CreateCICommand("", "", "abc@abc.com", "Konya");
+
+        var result = validator.TestValidate(command);
+
+        result.ShouldHaveValidationErrorFor(r => r.phoneNumber)
+            .WithErrorMessage(ValidationMessages.PhoneNumberRequired);
+    }
+
+    [Fact]
+    public async Task ShouldHaveErrorWhenLocationIsEmpty()
+    {
+        var validator = new CreateCICommandValidator();
+        var command = new CreateCICommand("", "0000000000", "abc@abc.com", "");
+
+        var result = validator.TestValidate(command);
+
+        result.ShouldHaveValidationErrorFor(r => r.location)
+            .WithErrorMessage(ValidationMessages.LocationRequired);
     }
 
 }

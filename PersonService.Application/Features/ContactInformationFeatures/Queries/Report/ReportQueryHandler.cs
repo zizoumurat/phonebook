@@ -1,13 +1,5 @@
-﻿using AutoMapper;
-using PersonService.Application.Features.PersonFeatures.Queries.GetAllPerson;
-using PersonService.Application.Messaging;
+﻿using PersonService.Application.Messaging;
 using PersonService.Application.Services;
-using PersonService.Domain.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersonService.Application.Features.ContactInformationFeatures.Queries.Report
 {
