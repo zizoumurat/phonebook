@@ -75,11 +75,6 @@ services:
   
   web.client:
     container_name: web.client
-    environment:
-      - production=false
-      - serverLogLevel=0
-      - apiUrl=http://ocelot.api
-      - hubUrl=http://report.api
     depends_on:
       - person.api
       - report.api

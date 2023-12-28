@@ -1,30 +1,15 @@
-# Builder aşaması
-FROM node:14 AS builder
-
-# Builder'ın çalışma dizinini belirle
+# Stage 1: Build frontend
+FROM node:18.16.0-alpine3.17 as build-stage
 WORKDIR /app
+COPY ./package*.json /app/
+RUN npm install -g @angular/cli
 
-# Angular uygulamasının bağımlılıklarını yükle
-COPY package*.json ./
 RUN npm install
+COPY ./ /app/
 
-# Angular uygulamasını kopyala
-COPY . .
+RUN npm run build -- --output-path=./dist/out --output-hashing=all
 
-# Angular uygulamasını derle
-RUN npm run build
-
-# Nginx aşaması
-FROM nginx:alpine
-
-# Nginx konfigürasyonunu değiştir
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Builder aşamasından derlenmiş uygulamayı al
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Gerekirse, uygulamanın çalıştığı portu belirt
-EXPOSE 80
-
-# Nginx'ı başlat
-CMD ["nginx", "-g", "daemon off;"]
+# Stage 2: Serve it using Ngnix
+FROM nginx:stable-alpine
+COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
