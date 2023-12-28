@@ -22,7 +22,7 @@ namespace PersonService.Application.Features.ContactInformationFeatures.Commands
 
             await _contactInformationService.Create(request.personId, contactInformation);
 
-            return new(contactInformation.Id.ToString());   
+            return new();   
         }
     }
 }

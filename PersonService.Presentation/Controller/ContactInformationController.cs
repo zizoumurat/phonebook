@@ -32,7 +32,7 @@ public class ContactInformationController : ApiController
     }
 
     [HttpDelete("{personId}/{id}")]
-    public async Task<IActionResult> Delete(string 	string id)
+    public async Task<IActionResult> Delete(string personId, string id)
     {
         var response = await _mediator.Send(new DeleteCICommand(personId, id));
 
