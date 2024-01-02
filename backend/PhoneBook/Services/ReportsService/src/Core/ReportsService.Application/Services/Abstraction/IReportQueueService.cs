@@ -1,4 +1,4 @@
-﻿namespace ReportsService.Application.Services;
+﻿namespace ReportsService.Application.Services.Abstraction;
 
 public interface IReportQueueService
 {

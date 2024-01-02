@@ -1,7 +1,7 @@
 using Microsoft.OpenApi.Models;
 using ReportsService.Api.Configurations;
 using ReportsService.Api.Configurations.Abstraction;
-using ReportsService.Application.Services;
+using ReportsService.Application.Services.Abstraction;
 using ReportsService.Infrasturcture;
 using ReportsService.Infrasturcture.Hubs;
 using ReportsService.Infrasturcture.Services;

@@ -1,8 +1,8 @@
 ﻿using MassTransit;
-using ReportsService.Application.Services;
 using ReportsService.Domain.Dtos;
 using Microsoft.AspNetCore.SignalR;
 using ReportsService.Infrasturcture.Hubs;
+using ReportsService.Application.Services.Abstraction;
 
 namespace ReportsService.Infrasturcture.Consumers
 {

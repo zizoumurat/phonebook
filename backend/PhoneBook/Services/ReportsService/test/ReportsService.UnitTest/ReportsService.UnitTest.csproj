@@ -25,6 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\src\Core\ReportsService.Application\ReportsService.Application.csproj" />
 	  <ProjectReference Include="..\..\src\Core\ReportsService.Domain\ReportsService.Domain.csproj" />
 	</ItemGroup>
 

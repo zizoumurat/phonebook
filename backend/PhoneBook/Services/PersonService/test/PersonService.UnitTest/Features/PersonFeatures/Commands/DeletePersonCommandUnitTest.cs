@@ -1,7 +1,6 @@
 ﻿using Moq;
 using PersonService.Application.Features.PersonFeatures.Commands.DeletePerson;
 using PersonService.Application.Services;
-using PersonService.Domain.Entities;
 using Shouldly;
 
 namespace PersonService.UnitTest.Features.PersonFeatures.Commands

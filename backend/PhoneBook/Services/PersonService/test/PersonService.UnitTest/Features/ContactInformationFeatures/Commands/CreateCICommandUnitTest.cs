@@ -3,21 +3,19 @@ using FluentValidation.TestHelper;
 using Moq;
 using PersonService.Application.Features.ContactInformationFeatures.Commands.CreateContactInformation;
 using PersonService.Application.Services;
-using PersonService.Domain.Entities;
 using PersonService.Domain.Validation;
+using PersonService.UnitTest.Base;
 using Shouldly;
 
 namespace PersonService.UnitTest.Features.ContactInformationFeatures.Commands;
 
-public class CreateCICommandUnitTest
+public class CreateCICommandUnitTest : BaseFixture
 {
     private readonly Mock<IContactInformaionService> _contactInformationService;
-    private readonly Mock<IMapper> _mapper;
 
     public CreateCICommandUnitTest()
     {
         _contactInformationService = new();
-        _mapper = new();
     }
 
     [Fact]

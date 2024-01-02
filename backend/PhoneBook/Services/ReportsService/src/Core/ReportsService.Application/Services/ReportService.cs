@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using ReportsService.Application.Services;
+using ReportsService.Application.Services.Abstraction;
 using ReportsService.Domain.Dtos;
 using ReportsService.Domain.Entities;
 using ReportsService.Domain.Repositories;
 
-namespace ReportsService.Persistance.Services
+namespace ReportsService.Application.Services
 {
     public class ReportService : IReportService
     {
@@ -19,14 +19,14 @@ namespace ReportsService.Persistance.Services
 
         public async Task AddDetailList(int reportId, IList<ReportDetailDto> detailList)
         {
-            await _reportRepository.AddDetailList(reportId,_mapper.Map<List<ReportDetail>>(detailList));
+            await _reportRepository.AddDetailList(reportId, _mapper.Map<List<ReportDetail>>(detailList));
         }
 
         public async Task<ReportDto> Create(ReportDto report)
         {
             var entity = _mapper.Map<Report>(report);
 
-           var addedReport =  await _reportRepository.Create(entity);
+            var addedReport = await _reportRepository.Create(entity);
 
             return _mapper.Map<ReportDto>(addedReport);
         }

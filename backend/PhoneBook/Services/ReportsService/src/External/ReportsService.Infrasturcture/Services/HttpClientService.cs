@@ -1,4 +1,4 @@
-﻿using ReportsService.Application.Services;
+﻿using ReportsService.Application.Services.Abstraction;
 using ReportsService.Domain.Dtos;
 using System.Net.Http.Json;
 

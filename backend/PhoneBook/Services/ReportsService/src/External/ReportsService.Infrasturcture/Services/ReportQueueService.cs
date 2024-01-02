@@ -1,7 +1,7 @@
-﻿using ReportsService.Application.Services;
-using MassTransit;
+﻿using MassTransit;
 using ReportsService.Domain.Dtos;
 using ReportsService.Domain.Entities;
+using ReportsService.Application.Services.Abstraction;
 
 namespace ReportsService.Infrasturcture.Services
 {

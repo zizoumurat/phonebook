@@ -1,21 +1,19 @@
-﻿using AutoMapper;
-using Moq;
+﻿using Moq;
 using PersonService.Application.Features.PersonFeatures.Commands.CreatePerson;
 using PersonService.Application.Services;
 using PersonService.Domain.Entities;
+using PersonService.UnitTest.Base;
 using Shouldly;
 
 namespace PersonService.UnitTest.Features.PersonFeatures.Commands
 {
-    public class CreatePersonCommandUnitTest
+    public class CreatePersonCommandUnitTest: BaseFixture
     {
         private readonly Mock<IPersonService> _personService;
-        private readonly Mock<IMapper> _mapper;
 
         public CreatePersonCommandUnitTest()
         {
             _personService = new();
-            _mapper = new();
         }
 
         [Fact]

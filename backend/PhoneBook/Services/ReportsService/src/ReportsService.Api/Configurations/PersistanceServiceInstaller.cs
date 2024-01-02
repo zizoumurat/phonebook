@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReportsService.Api.Configurations.Abstraction;
 using ReportsService.Application.Services;
+using ReportsService.Application.Services.Abstraction;
 using ReportsService.Domain.Repositories;
 using ReportsService.Persistance;
 using ReportsService.Persistance.Context;
 using ReportsService.Persistance.Repositories;
-using ReportsService.Persistance.Services;
 
 namespace ReportsService.Api.Configurations;
 

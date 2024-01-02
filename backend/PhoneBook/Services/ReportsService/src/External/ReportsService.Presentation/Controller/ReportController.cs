@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ReportsService.Application.Services;
+using ReportsService.Application.Services.Abstraction;
 using ReportsService.Presentation.Abstraction;
 
 namespace ReportsService.Presentation.Controller
