@@ -3,13 +3,14 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 80
+EXPOSE 8080
+EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["OcelotApi/OcelotApi.csproj", "OcelotApi/"]
-RUN dotnet restore "./OcelotApi/./OcelotApi.csproj"
+RUN dotnet restore "OcelotApi/OcelotApi.csproj"
 COPY . .
 WORKDIR "/src/OcelotApi"
 RUN dotnet build "./OcelotApi.csproj" -c $BUILD_CONFIGURATION -o /app/build

@@ -9,11 +9,13 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["ReportsService.Api/ReportsService.Api.csproj", "ReportsService.Api/"]
-COPY ["ReportsService.Domain/ReportsService.Domain.csproj", "ReportsService.Domain/"]
-COPY ["ReportsService.Persistance/ReportsService.Persistance.csproj", "ReportsService.Persistance/"]
-COPY ["ReportsService.Application/ReportsService.Application.csproj", "ReportsService.Application/"]
-COPY ["ReportsService.Presentation/ReportsService.Presentation.csproj", "ReportsService.Presentation/"]
-RUN dotnet restore "./ReportsService.Api/./ReportsService.Api.csproj"
+COPY ["Core/ReportsService.Application/ReportsService.Application.csproj", "Core/ReportsService.Application/"]
+COPY ["Core/ReportsService.Domain/ReportsService.Domain.csproj", "Core/ReportsService.Domain/"]
+COPY ["External/ReportsService.Infrasturcture/ReportsService.Infrasturcture.csproj", "External/ReportsService.Infrasturcture/"]
+COPY ["External/ReportsService.Persistance/ReportsService.Persistance.csproj", "External/ReportsService.Persistance/"]
+COPY ["External/ReportsService.Presentation/ReportsService.Presentation.csproj", "External/ReportsService.Presentation/"]
+
+RUN dotnet restore "ReportsService.Api/ReportsService.Api.csproj"
 COPY . .
 WORKDIR "/src/ReportsService.Api"
 RUN dotnet build "./ReportsService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build

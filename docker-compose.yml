@@ -12,20 +12,20 @@ services:
   person.api:
     image: personapi
     build:
-      context: .
-      dockerfile: backend/PhoneBook/Services/PersonService/src/PersonService.Api/Dockerfile
+      context: ./backend/PhoneBook/Services/PersonService/src/
+      dockerfile: PersonService.Api/Dockerfile
 
   report.api:
     image: reportapi
     build:
-      context: .
-      dockerfile: backend/PhoneBook/Services/ReportsService/src/ReportsService.Api/Dockerfile
+      context: ./backend/PhoneBook/Services/ReportsService/src/
+      dockerfile: ReportsService.Api/Dockerfile
 
   ocelot.api:
     image: ocelotapi
     build:
-      context: .
-      dockerfile: backend/PhoneBook/ApiGateway/OcelotApi/Dockerfile  
+      context: ./backend/PhoneBook/ApiGateway/
+      dockerfile: OcelotApi/Dockerfile  
   
   web.client:
     image: web.client
