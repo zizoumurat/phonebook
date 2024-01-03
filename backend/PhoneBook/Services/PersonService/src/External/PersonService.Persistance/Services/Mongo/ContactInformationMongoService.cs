@@ -35,29 +35,39 @@ namespace PersonService.Persistance.Services.Mongo
 
         public async Task<IList<LocationReportDto>> GetReportList()
         {
-            var pipeline = new BsonDocument[]
-            {
-                new BsonDocument("$unwind", "$ContactInformation"),
-                    new BsonDocument("$group",
-                        new BsonDocument
-                        {
-                            { "_id", "$ContactInformation.Location" },
-                            { "PhoneNumberCount", new BsonDocument("$sum", 1) },
-                            { "PersonCount", new BsonDocument("$sum", 1) }
-                        }
-                    ),
-                    new BsonDocument("$project",
-                        new BsonDocument
-                        {
-                            { "_id", 0 },
-                            { "Location", "$_id" },
-                            { "PhoneNumberCount", "$PhoneNumberCount" },
-                            { "PersonCount", "$PersonCount" }
-                        }
-                    )
-            };
+            var distinctLocations =  _personDbContext.Persons
+                  .AsQueryable()
+                  .SelectMany(x => x.ContactInformation)
+                  .Select(ci => ci.Location)
+                  .Distinct()
+                  .ToList();
+                
 
-            return await _personDbContext.Persons.Aggregate<LocationReportDto>(pipeline).ToListAsync();
+            var locationReports = new List<LocationReportDto>();
+
+            foreach (var location in distinctLocations)
+            {
+                var personCount =  _personDbContext.Persons
+                    .AsQueryable()
+                    .Where(x => x.ContactInformation.Any(ci => ci.Location == location))
+                    .Count();
+
+                var phoneNumberCount =  _personDbContext.Persons
+                    .AsQueryable()
+                    .SelectMany(x => x.ContactInformation)
+                    .Where(ci => ci.Location == location)
+                    .Count();
+
+                locationReports.Add(new LocationReportDto
+                {
+                    Location = location,
+                    PersonCount = (int)personCount,
+                    PhoneNumberCount = phoneNumberCount
+                });
+            }
+
+
+            return locationReports;
         }
     }
 }
